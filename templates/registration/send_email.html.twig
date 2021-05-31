@@ -1,0 +1,6 @@
+{% extends 'mail.html.twig' %}
+{% block central %}
+<h1 >REACTIVATION DE VOTRE COMPTE</p>
+<p>Veuillez cliquer sur le lien ci-dessous pour  réactiver votre compte</p>
+<p><a href="{{ absolute_url(path('activation', {'token': token})) }}">Réactiver mon compte</a></p>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My_quizz
+{% endblock %}
+
+{% block central %}
+
+  <div class="">
+    <div class="col-3"></div>
+
+    <div class="col">
+      {% if error is defined %}
+
+        <p>{{error}}</p>
+      {% endif %}
+      {% if listQuizzs is defined %}
+
+        <h4 >Resulat trouver ({{listQuizzs|length}})</h4>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Categorie</th>
+              <th scope="col">nom Quizz</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for listQuizz in listQuizzs %}
+              <tr>
+                <th scope="row">{{name}}</th>
+                <td>
+                  <a href="/quizz/{{listQuizz.id}}">{{listQuizz.name}}</a>
+                </td>
+                {% if is_granted('ROLE_ADMIN') %}
+                  <td>
+                    <a href="{{ path('quizz_delete', {'id': listQuizz.id}) }}">Supprimer ce quizz</a>
+                  </td>
+                {% endif %}
+
+              </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+
+    {% endblock %}
