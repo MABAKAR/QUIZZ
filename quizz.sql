@@ -24,21 +24,13 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `categories`
---
-
-CREATE TABLE `categories` (
-  `id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
+use quizz;
 --
 -- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`) VALUES
-(1, 'DB'),
+(1, 'BD'),
 (2, 'Actualités'),
 (3, 'Arts'),
 (4, 'Cinéma'),
@@ -49,60 +41,30 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `doctrine_migration_versions`
+-- Dumping data for table `quizz`
 --
 
-CREATE TABLE `doctrine_migration_versions` (
-  `version` varchar(191) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `executed_at` datetime DEFAULT NULL,
-  `execution_time` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `doctrine_migration_versions`
---
-
-INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20210512131038', '2021-05-12 15:22:49', 88491),
-('DoctrineMigrations\\Version20210512135506', '2021-05-12 15:55:19', 1698),
-('DoctrineMigrations\\Version20210512135747', '2021-05-12 15:57:56', 257);
+INSERT INTO `quizz` (`id`, `categories_id`, `name`) VALUES
+(1, 1, 'tintin'),
+(2, 2, 'Élections présidentielles 2017'),
+(3, 3, 'Peinture et musée'),
+(4, 1, 'Les méchants de fiction'),
+(5, 4, 'Les César'),
+(6, 5, 'Les épices'),
+(7, 6, 'Retour à l’école'),
+(8, 7, 'Astrologie chinoise'),
+(9, 2, 'La presse écrite'),
+(10, 3, 'Les architectes célèbres'),
+(11, 4, 'Les réalisateurs'),
+(12, 5, 'Le monde du sucré dans la culture'),
+(13, 6, 'Philosophie'),
+(14, 7, 'Esotérisme ');
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `historique`
---
-
-CREATE TABLE `historique` (
-  `id` int NOT NULL,
-  `users_id` int NOT NULL,
-  `quizz_id` int NOT NULL,
-  `categories_id` int NOT NULL,
-  `score` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `historique`
---
-
-INSERT INTO `historique` (`id`, `users_id`, `quizz_id`, `categories_id`, `score`, `date`) VALUES
-(9, 1, 1, 1, '30', '2021-05-12 15:56:01'),
-(10, 1, 1, 1, '30', '2021-05-12 16:02:52'),
-(11, 2, 1, 1, '30', '2021-05-16 19:24:25');
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `question`
---
-
-CREATE TABLE `question` (
-  `id` int NOT NULL,
-  `quizz_id` int NOT NULL,
-  `question` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `index_question` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `question`
@@ -252,48 +214,10 @@ INSERT INTO `question` (`id`, `quizz_id`, `question`, `index_question`) VALUES
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `quizz`
---
-
-CREATE TABLE `quizz` (
-  `id` int NOT NULL,
-  `categories_id` int DEFAULT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `quizz`
---
-
-INSERT INTO `quizz` (`id`, `categories_id`, `name`) VALUES
-(1, 1, 'tintin'),
-(2, 2, 'Élections présidentielles 2017'),
-(3, 3, 'Peinture et musée'),
-(4, 1, 'Les méchants de fiction'),
-(5, 4, 'Les César'),
-(6, 5, 'Les épices'),
-(7, 6, 'Retour à l’école'),
-(8, 7, 'Astrologie chinoise'),
-(9, 2, 'La presse écrite'),
-(10, 3, 'Les architectes célèbres'),
-(11, 4, 'Les réalisateurs'),
-(12, 5, 'Le monde du sucré dans la culture'),
-(13, 6, 'Philosophie'),
-(14, 7, 'Esotérisme ');
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `reponse`
---
 
-CREATE TABLE `reponse` (
-  `id` int NOT NULL,
-  `question_id` int NOT NULL,
-  `reponse` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `indice_reponse` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `reponse`
@@ -863,53 +787,16 @@ INSERT INTO `reponse` (`id`, `question_id`, `reponse`, `indice_reponse`) VALUES
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `reponsehistorique`
---
-
-CREATE TABLE `reponsehistorique` (
-  `id` int NOT NULL,
-  `historique_id` int NOT NULL,
-  `reponse` json NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `reponsehistorique`
 --
 
-INSERT INTO `reponsehistorique` (`id`, `historique_id`, `reponse`) VALUES
-(9, 9, 'null'),
-(10, 10, '{\"1\": {\"corect\": \"Le Pérou\", \"repUser\": \"La Bolivie\", \"question\": \"Dans quel pays se passent les aventures de Tintin et le Temple du Soleil ?\", \"index_ques\": 1, \"result_repUser\": 0}, \"2\": {\"corect\": \"Le Petit Vingtième \", \"repUser\": \"Le Petit Vingtième \", \"question\": \"Dans quel journal travaille Tintin ?\", \"index_ques\": 2, \"result_repUser\": 1}, \"3\": {\"corect\": \"Le San Theodoros\", \"repUser\": \"Le San Salvador \", \"question\": \"Quel est le pays du général Alcazar ?\", \"index_ques\": 3, \"result_repUser\": 0}, \"4\": {\"corect\": \"De Gaulle \", \"repUser\": \"Winston Churchill \", \"question\": \"Quel homme politique a dit que « Tintin était son rival international » ?  \", \"index_ques\": 4, \"result_repUser\": 0}, \"5\": {\"corect\": \"Rastatopoulos \", \"repUser\": \"Rastatopoulos \", \"question\": \"Quel ennemi de Tintin a été capturé par des extra-terrestres à la fin de l’album Vol 714 pour Sydney ?\", \"index_ques\": 5, \"result_repUser\": 1}, \"6\": {\"corect\": \"Le Sceptre d’Ottokar \", \"repUser\": \"Les Bijoux de la Castafiore \", \"question\": \" Dans quelle aventure, Tintin est-il décoré chevalier de l’ordre du Pélican d’Or ?\", \"index_ques\": 6, \"result_repUser\": 0}, \"7\": {\"corect\": \"Tryphon\", \"repUser\": \"Ernest \", \"question\": \"Quel est le prénom du Professeur Tournesol ?\", \"index_ques\": 7, \"result_repUser\": 0}, \"8\": {\"corect\": \"L’Affaire Tournesol\", \"repUser\": \"L’Affaire Tournesol\", \"question\": \"Dans quelle aventure Tintin doit-il empêcher la Syldavie et la Bordurie de s’emparer d’une arme très destructrice ?\", \"index_ques\": 8, \"result_repUser\": 1}, \"9\": {\"corect\": \"intin au Pays des Soviets \", \"repUser\": \"Tintin au Congo \", \"question\": \"Les Sept Boules de Cristal\", \"index_ques\": 9, \"result_repUser\": 0}, \"10\": {\"corect\": \"Un fox-terrier \", \"repUser\": \"Un yorkshire-terrier\", \"question\": \"Quelle race de chiens est Milou ?\", \"index_ques\": 10, \"result_repUser\": 0}}'),
-(11, 11, '{\"1\": {\"corect\": \"Le Pérou\", \"repUser\": \"La Bolivie\", \"question\": \"Dans quel pays se passent les aventures de Tintin et le Temple du Soleil ?\", \"index_ques\": 1, \"result_repUser\": 0}, \"2\": {\"corect\": \"Le Petit Vingtième \", \"repUser\": \"Le Matin de Bruxelles\", \"question\": \"Dans quel journal travaille Tintin ?\", \"index_ques\": 2, \"result_repUser\": 0}, \"3\": {\"corect\": \"Le San Theodoros\", \"repUser\": \"La Bolibanie \", \"question\": \"Quel est le pays du général Alcazar ?\", \"index_ques\": 3, \"result_repUser\": 0}, \"4\": {\"corect\": \"De Gaulle \", \"repUser\": \"Hitler\", \"question\": \"Quel homme politique a dit que « Tintin était son rival international » ?  \", \"index_ques\": 4, \"result_repUser\": 0}, \"5\": {\"corect\": \"Rastatopoulos \", \"repUser\": \"Rastatopoulos \", \"question\": \"Quel ennemi de Tintin a été capturé par des extra-terrestres à la fin de l’album Vol 714 pour Sydney ?\", \"index_ques\": 5, \"result_repUser\": 1}, \"6\": {\"corect\": \"Le Sceptre d’Ottokar \", \"repUser\": \"Tintin au Tibet \", \"question\": \" Dans quelle aventure, Tintin est-il décoré chevalier de l’ordre du Pélican d’Or ?\", \"index_ques\": 6, \"result_repUser\": 0}, \"7\": {\"corect\": \"Tryphon\", \"repUser\": \"Ernest \", \"question\": \"Quel est le prénom du Professeur Tournesol ?\", \"index_ques\": 7, \"result_repUser\": 0}, \"8\": {\"corect\": \"L’Affaire Tournesol\", \"repUser\": \"L’Affaire Tournesol\", \"question\": \"Dans quelle aventure Tintin doit-il empêcher la Syldavie et la Bordurie de s’emparer d’une arme très destructrice ?\", \"index_ques\": 8, \"result_repUser\": 1}, \"9\": {\"corect\": \"intin au Pays des Soviets \", \"repUser\": \"intin au Pays des Soviets \", \"question\": \"Les Sept Boules de Cristal\", \"index_ques\": 9, \"result_repUser\": 1}, \"10\": {\"corect\": \"Un fox-terrier \", \"repUser\": \"Un bichon maltais \", \"question\": \"Quelle race de chiens est Milou ?\", \"index_ques\": 10, \"result_repUser\": 0}}');
-
 -- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `id` int NOT NULL,
-  `email` varchar(180) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `roles` json NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pseudo` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lastname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `firstname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `update_at` datetime NOT NULL,
-  `create_at` datetime NOT NULL,
-  `lastconnect` datetime NOT NULL,
-  `activation_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `reset_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
-
-INSERT INTO `user` (`id`, `email`, `roles`, `password`, `pseudo`, `lastname`, `firstname`, `update_at`, `create_at`, `lastconnect`, `activation_token`, `reset_token`) VALUES
-(1, 'petubrt@gmail.com', '{\"2\": \"ROLE_USER\"}', '$2y$13$Io6d9l9NHAEjjcXUfCX0GOV6CQxq4D9a3ILCsWde.nqb51W8Pfk5C', '89mohamadi', 'msa', 'mohamadi', '2021-05-12 16:25:52', '2021-05-12 15:37:49', '2021-05-12 15:37:49', NULL, NULL),
-(2, 'tnifasshouda@gmail.com', '[]', '$2y$13$kOg7alkb0rZPFP8gVGeqluGfTr8QzZg3I0cZth9yDRd3HT14hucOi', '2houda', 'tnifass', 'houda', '2021-05-16 19:22:01', '2021-05-16 19:22:01', '2021-05-16 19:22:01', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -924,17 +811,9 @@ ALTER TABLE `categories`
 --
 -- Indexes for table `doctrine_migration_versions`
 --
-ALTER TABLE `doctrine_migration_versions`
-  ADD PRIMARY KEY (`version`);
-
 --
 -- Indexes for table `historique`
 --
-ALTER TABLE `historique`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_EDBFD5EC67B3B43D` (`users_id`),
-  ADD KEY `IDX_EDBFD5ECBA934BCD` (`quizz_id`),
-  ADD KEY `IDX_EDBFD5ECA21214B7` (`categories_id`);
 
 --
 -- Indexes for table `question`
@@ -1057,4 +936,4 @@ COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */
