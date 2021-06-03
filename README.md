@@ -1,6 +1,8 @@
 # QUIZZ 
 
-![alt text](http:/Capture d’écran 2021-06-03 à 08.50.34![image](https://user-images.githubusercontent.com/73992960/120600499-2194f900-c449-11eb-8dc9-af7174440db1.png))
+!(http:/Capture d’écran 2021-06-03 à 08.50.34![image](https://user-images.githubusercontent.com/73992960/120600499-2194f900-c449-11eb-8dc9-af7174440db1.png))
+
+
 with several features
 
 USER
