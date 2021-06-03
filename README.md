@@ -28,3 +28,25 @@ ADMIN
 
 ```git clone git@github.com:MABAKAR/QUIZZ.git```
 
+Install project dependencies
+
+
+```composer install```
+
+
+NAVIGATE IN THE FOLDER
+
+```cd quizz```
+
+CHANGE THE .ENV WITH YOUR SQL IDENTIFIER AND YOUR MAILTRAP
+
+DATABASE MIGRATIONS
+
+```php bin/console d:d:c```
+```php bin/console d:m:m```
+
+IMPORT THE FILE quizz.sql with your phpMyAdmin
+
+Launch Web application in localhost
+
+```symfony serve -d ```
