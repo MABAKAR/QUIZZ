@@ -26,5 +26,5 @@ ADMIN
 
 # INSTALL
 
-```git clone git@github.com:MABAKAR/QUIZZ.git
+```git clone git@github.com:MABAKAR/QUIZZ.git```
 
