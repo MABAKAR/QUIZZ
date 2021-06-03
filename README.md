@@ -28,15 +28,19 @@ ADMIN
 
 ```git clone git@github.com:MABAKAR/QUIZZ.git```
 
+
+
+
+NAVIGATE IN THE FOLDER
+
+```cd quizz```
+
 Install project dependencies
 
 
 ```composer install```
 
 
-NAVIGATE IN THE FOLDER
-
-```cd quizz```
 
 CHANGE THE .ENV WITH YOUR SQL IDENTIFIER AND YOUR MAILTRAP
 
